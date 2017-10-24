@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <input type="text">
+    <button>Add Todo</button>
+    <ul></ul>
+    <script type="text/javascript">
+    var inputEl = document.querySelector('input');
+    var buttonEl = document.querySelector('button');
+    var ulEl = document.querySelector('ul');
+    var todos = [];
+
+    buttonEl.addEventListener('click', addTodo);
+
+    function addTodo() {
+        var userInput = inputEl.value;
+        if (userInput.trim() == '') {
+            return;
+        }
+        var todoLi = document.createElement('LI');
+        todoLi.textContent = userInput;
+        ulEl.appendChild(todoLi);
+        todoLi.addEventListener('click', removeTodo);
+    }
+
+
+    function removeTodo(event) {
+        var clickedLi = event.target;
+        clickedLi.parentNode.removeChild(clickedLi);
+    }
+
+    function removeTodo(event) {
+        var clickedLi = event.target;
+        var itemId = clickedLi.dataset.id;
+        for (var i = 0; i < todos.length; i++) {
+            if (todos[i].id == itemId) {
+                todos.splice(i, 1);
+                break;
+            }
+        }
+        clickedLi.parentNode.removeChild(clickedLi);
+    }
+    // var inputEl = $('input');
+    // var buttonEl = $('button');
+    // var ulEl = $('ul');
+    // var todos = [];
+
+    // buttonEl.click(addTodo);
+
+    // function addTodo() {
+    //     var userInput = inputEl.val();
+    //     if (userInput.trim() == '') {
+    //         return;
+    //     }
+    //     var newTodo ={id:Math.random(),value:userInput};
+     
+    //    todos.push(newTodo);
+    //    $('<li>' + userInput +'<li>')
+    //     .appendTo(ulEl)
+    //     .attr('dataset-id',newTodo.id)
+    //     .click(removeTodo);
+    // }
+
+    // function removeTodo(event) {
+    //     var clickedLi = $(this);
+    //     var itemId = clickedLi.attr('dataset-id');
+    //     for (var i = 0; i < todos.length; i++) {
+    //         if (todos[i].id == itemId) {
+    //             todos.splice(i, 1);
+    //             break;
+    //         }
+    //     }
+    //     clickedLi.remove();
+    //   console.log(todos);
+    // }
+    </script>
+</body>
+
+</html>
